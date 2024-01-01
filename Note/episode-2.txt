@@ -1,0 +1,24 @@
+npm install -D parcel  - it is a buttler which is responsible to insall
+
+
+^ - it's use to upgrade package minor/patces version 
+
+~ - it's use to upgrade package major/patces version 
+
+Transitive Dependencies- When one package depend on second package and second package on third package
+
+NPM, NPX-
+
+if you want execute a package than we use npx 
+
+if you want install a package than we use npm 
+
+npm install -D parcel   here used -D is show its devDependencies
+
+npx parcel index.html  - run this command for create local server
+
+npm i react
+
+npm i react-dom
+
+Remove main: "App.js" from package.json because some command of parcel is not working..
