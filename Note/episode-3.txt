@@ -1,0 +1,4 @@
+JSX- is not HTML in js.
+
+JSX is html like syntax.
+
