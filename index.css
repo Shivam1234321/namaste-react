@@ -27,7 +27,6 @@ body{
 }
 
 .res-card{
-    height: 300px;
     width: 200px;
     padding: 5px;
     margin: 5px;
@@ -44,4 +43,9 @@ body{
 
 .res-card > .res-logo{
     width: 100%;
+    height:150px;
+}
+
+.res-card > h4{
+    margin: 10px;
 }
