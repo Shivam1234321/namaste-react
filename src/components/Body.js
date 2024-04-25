@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react";
-import resList from "../utils/restrauntsData";
 import RestaurantCard from "./RestaurantCard";
+import { ShimmerSimpleGallery } from "react-shimmer-effects";
 
 const Body = () => {
 
-    const [restaurantList, setRestaurantList] = useState();
+    const [searchTerm, setSearchTerm]= useState("");
+    const [restaurantList, setRestaurantList] = useState([]);
+    const [filterdList, setFilterdList] = useState([]);
 
     useEffect(() =>{
         getRestrauntData();
@@ -14,26 +16,47 @@ const Body = () => {
         const data= await fetch("https://www.swiggy.com/dapi/restaurants/list/v5?lat=25.3176452&lng=82.9739144&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING");
 
         const json= await data.json();
-
-        const resCardData= json.data.cards[5]?.card.card.gridElements.infoWithStyle.restaurants;
+        console.log(json)
+        const resCardData= json?.data?.cards[4]?.card?.card?.gridElements.infoWithStyle.restaurants;
         console.log(resCardData);
         setRestaurantList(resCardData);
+        setFilterdList(resCardData);
+    }
+
+    const filterList= () =>{
+        console.log(searchTerm)
+        let filterData= restaurantList.filter((item) => 
+          item.info?.name.toLowerCase().includes(searchTerm.toLowerCase())
+        );
+        setFilterdList(filterData);
+    }
+
+    if(restaurantList.length === 0){
+        return <div className="body">
+            <ShimmerSimpleGallery card col={4} row={3} imageHeight={300} caption />
+        </div>
     }
 
     return (
         <div className="res-body">
             <div className="filter">
+                <div className="search-input">
+                    <input type="text" value={searchTerm} onChange={(e) =>{
+                        setSearchTerm(e.target.value)
+                    }} />
+                    <button onClick={filterList}>Search</button>
+                </div>
                 <button className="filter-btn" onClick={() =>{
                     const lists= restaurantList.filter((item) =>{
                         return item.info?.avgRating > 4;
                     });
                     console.log(lists);
-                    setRestaurantList(lists);
+                    setFilterdList(lists);
                 }}>Top Reated Restaurant</button>
             </div>
             <div className="res-container">
                 {
-                    restaurantList?.map((item, index) =>{
+                    filterdList?.map((item, index) =>{
                         return <RestaurantCard key={item.info.id} data={item} />;
                     })
                 }

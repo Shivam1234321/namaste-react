@@ -33,7 +33,7 @@ body{
     background-color: cornsilk;
 }
 
-.res-body > .search{
+.res-body > .filter{
     padding: 10px;
 }
 
@@ -48,4 +48,13 @@ body{
 
 .res-card > h4{
     margin: 10px;
+}
+
+.filter{
+    display: flex;
+    word-wrap: normal;
+}
+
+.filter-btn{
+    margin-left: 5px;
 }
