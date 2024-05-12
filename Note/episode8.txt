@@ -1,0 +1,4 @@
+Never update state variable directoly 
+
+in class based component first call constructor is call then this render method call after that componentDidMount() call.
+

@@ -1,12 +1,14 @@
 import { useEffect, useState } from "react";
 import RestaurantCard from "./RestaurantCard";
 import { ShimmerSimpleGallery } from "react-shimmer-effects";
+import useOnlineStatus from "../utils/useOnlineStatus";
 
 const Body = () => {
 
     const [searchTerm, setSearchTerm]= useState("");
     const [restaurantList, setRestaurantList] = useState([]);
     const [filterdList, setFilterdList] = useState([]);
+    const onlineStatus= useOnlineStatus();
 
     useEffect(() =>{
         getRestrauntData();
@@ -16,11 +18,15 @@ const Body = () => {
         const data= await fetch("https://www.swiggy.com/dapi/restaurants/list/v5?lat=25.3176452&lng=82.9739144&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING");
 
         const json= await data.json();
-        console.log(json)
         const resCardData= json?.data?.cards[4]?.card?.card?.gridElements.infoWithStyle.restaurants;
-        console.log(resCardData);
         setRestaurantList(resCardData);
         setFilterdList(resCardData);
+    }
+
+    if(!onlineStatus){
+        return (
+            <h1>Look like your internet connection is gone. Please check for smooth browsing :)</h1>
+        )
     }
 
     const filterList= () =>{
