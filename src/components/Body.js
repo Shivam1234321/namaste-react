@@ -45,22 +45,24 @@ const Body = () => {
 
     return (
         <div className="res-body">
-            <div className="filter">
-                <div className="search-input">
-                    <input type="text" value={searchTerm} onChange={(e) =>{
+            <div className="flex">
+                <div className="search-input p-2 m-2">
+                    <input className="border border-solid border-black" type="text" value={searchTerm} onChange={(e) =>{
                         setSearchTerm(e.target.value)
                     }} />
-                    <button onClick={filterList}>Search</button>
+                    <button className="px-4 p-2 m-4 bg-green-100 rounded-lg" onClick={filterList}>Search</button>
                 </div>
-                <button className="filter-btn" onClick={() =>{
+                <div className="p-2 m-2 flex items-center">
+                <button className="px-4 p-2 m-4 bg-green-100  rounded-lg" onClick={() =>{
                     const lists= restaurantList.filter((item) =>{
                         return item.info?.avgRating > 4;
                     });
                     console.log(lists);
                     setFilterdList(lists);
                 }}>Top Reated Restaurant</button>
+                </div>
             </div>
-            <div className="res-container">
+            <div className="flex flex-wrap">
                 {
                     filterdList?.map((item, index) =>{
                         return <RestaurantCard key={item.info.id} data={item} />;

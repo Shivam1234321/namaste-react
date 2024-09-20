@@ -6,9 +6,9 @@ const RestaurantCard = (props) => {
     const {cloudinaryImageId, name, cuisines, avgRating, costForTwo, sla, id} = data.info;
     return (
         <Link to={`/restaurant/${id}`}>
-            <div className="res-card">
-                <img src={CDN_URL+cloudinaryImageId} alt="res-logo" className="res-logo" />
-                <h3>{name}</h3>
+            <div className="m-2 p-4 w-[250] rounded-lg shadow-lg bg-gray-100 hover:bg-gray-200">
+                <img src={CDN_URL+cloudinaryImageId} alt="res-logo" className="rounded-xl" />
+                <h3 className="font-bold text-lg">{name}</h3>
                 <h4>{cuisines.join(", ")}</h4>
                 <h4>{avgRating} Star</h4>
                 <h4>{costForTwo}</h4>

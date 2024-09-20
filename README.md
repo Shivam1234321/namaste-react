@@ -17,3 +17,18 @@
 - Error Handling
 - HTTPs
 - Tree Shaking
+
+
+# Routing 
+
+- Client side routing
+- Server side routing 
+
+# Redux Toolkit 
+
+- Install @reduxjs/tookit and react-redux
+- Build our store 
+- Connect our store to  our app
+- Slice (cartSlice)
+- dispatch (action)
+- Selector

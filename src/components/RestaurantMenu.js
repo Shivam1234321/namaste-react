@@ -1,6 +1,7 @@
 import { useParams } from 'react-router-dom';
 import { ShimmerSimpleGallery } from 'react-shimmer-effects';
 import useRestaurantMenu from '../utils/useRestaurantMenu';
+import ProductCard from './ProductCard';
 
 const RestaurantMenu = () => {
 
@@ -19,25 +20,15 @@ const RestaurantMenu = () => {
  console.log(menu)
   return (
     <div>
-       <h1>{name}</h1>
-       <p>{cuisines.join(", ")} - {costForTwoMessage}</p>
-
-       <h2>Menu</h2>
-       <ul>
+       <div className="flex items-center justify-center">
+        <h1 className="text-4xl font-bold text-gray-800 text-center">{name}</h1><br/>
+        <p className='class="text-4xl font-bold text-gray-800 text-center"'>{cuisines.join(", ")} - {costForTwoMessage}</p>
+      </div>
        {
         menu?.map((item, index) =>
-             <li key={index}>{item?.card?.info?.name}
-                <ul>
-                    {
-                        item?.card?.info?.addons?.map((value, index) => <li key={value?.groupName}>{value?.groupName}</li> )
-                    }
-                </ul>
-             </li>
+             <ProductCard data={item}/>
         )
        }
-      
-        
-       </ul>
     </div>
   )
 }
