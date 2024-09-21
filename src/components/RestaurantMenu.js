@@ -26,7 +26,7 @@ const RestaurantMenu = () => {
       </div>
        {
         menu?.map((item, index) =>
-             <ProductCard data={item}/>
+             <ProductCard key={`pcd`+{index}} data={item?.card?.info} index={index}/>
         )
        }
     </div>
